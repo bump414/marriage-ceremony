@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>合言葉ページ</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f5f7fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .box {
+      background: #fff;
+      padding: 32px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 12px;
+      font-size: 24px;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      margin-bottom: 12px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .message {
+      margin-top: 14px;
+      font-size: 14px;
+      color: red;
+      min-height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>合言葉を入力</h1>
+    <p>正しい合言葉を入力すると、対応するページへ移動します。</p>
+
+    <input type="password" id="password" placeholder="合言葉を入力" />
+    <button onclick="checkPassword()">送信</button>
+
+    <div class="message" id="message"></div>
+  </div>
+
+  <script>
+    async function sha256(text) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(text);
+      const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    async function checkPassword() {
+      const input = document.getElementById("password").value;
+      const message = document.getElementById("message");
+
+      // 合言葉をSHA-256で比較する
+      const inputHash = await sha256(input);
+
+      // ▼ここを自分用に置き換える
+      const password1Hash = "ここに1つ目の合言葉のSHA-256ハッシュ";
+      const password2Hash = "ここに2つ目の合言葉のSHA-256ハッシュ";
+
+      const url1 = "https://example.com/page1";
+      const url2 = "https://example.com/page2";
+      // ▲ここまで置き換える
+
+      if (inputHash === password1Hash) {
+        window.location.href = url1;
+      } else if (inputHash === password2Hash) {
+        window.location.href = url2;
+      } else {
+        message.textContent = "合言葉が違います。";
+      }
+    }
+
+    // Enterキーでも送信できるようにする
+    document.getElementById("password").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        checkPassword();
+      }
+    });
+  </script>
+</body>
+</html>
