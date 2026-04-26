@@ -66,7 +66,7 @@
     <h1>合言葉を入力</h1>
     <p>正しい合言葉で移動します</p>
 
-    <input type="password" id="password" placeholder="合言葉を入力">
+    <input type="password" id="password" placeholder="合言葉を入力" oninput="preview()">
     <button onclick="checkPassword()">送信</button>
 
     <div id="result"></div>
@@ -80,6 +80,7 @@
       // ここを実際のURLに変更
       const urlForHanataba = "https://www.i879.com/?utm_source=overture&utm_medium=cpc&utm_campaign=01_gainenhiro&utm_content=quick&yclid=YSS.1000067700.EAIaIQobChMIoYqznMiKlAMVCF4PAh3TUyVMEAAYAiAAEgJcPPD_BwE&sa_p=YSA&sa_cc=1000067700&sa_t=1777173779062&sa_ra=78";
       const urlForDaisuki = "https://equal-love.jp/";
+      const urlForKotae = "https://ameblo.jp/bump414/entry-12964207575.html";
 
       if (input === "hanataba") {
         result.textContent = "hanatabaで移動します...";
@@ -89,6 +90,9 @@
         result.textContent = "loveで移動します...";
         result.style.color = "green";
         window.location.href = urlForDaisuki;
+      } else if (input === "kotae") {
+        result.textContent = "kotaeで移動します...";
+        result.style.color = "green";
       } else {
         result.textContent = "合言葉が違います";
         result.style.color = "red";
