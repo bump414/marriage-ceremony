@@ -78,17 +78,17 @@
       const result = document.getElementById("result");
 
       // ここを実際のURLに変更
-      const urlForThankyou = "https://ameblo.jp/bump414/entry-12964207575.html";
-      const urlForありがとう = "https://photos.app.goo.gl/fn67gaQLKHstpvDo9";
+      const urlForSweet = "https://ameblo.jp/bump414/entry-12964207575.html";
+      const urlForThankyou = "https://photos.app.goo.gl/fn67gaQLKHstpvDo9";
 
-      if (input === "Thankyou") {
-        result.textContent = "Thankyouで移動します...";
-        result.style.color = "pink";
-        window.location.href = urlForThankyou;
-      } else if (input === "ありがとう") {
-        result.textContent = "ありがとうで移動します...";
+      if (input === "Sweet") {
+        result.textContent = "ドーナツ美味しいな";
         result.style.color = "green";
-        window.location.href = urlForありがとう;
+        window.location.href = urlForSweet;
+      } else if (input === "Thankyou") {
+        result.textContent = "素敵な一日をThank you ♥";
+        result.style.color = "pimk";
+        window.location.href = urlForThankyou;
       } else {
         result.textContent = "合言葉が違います";
         result.style.color = "red";
