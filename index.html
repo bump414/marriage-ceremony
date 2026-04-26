@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>合言葉ページ</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f5f7fb;
+      font-family: sans-serif;
+    }
+
+    .box {
+      width: 90%;
+      max-width: 420px;
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      font-size: 16px;
+      margin: 12px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    #result {
+      margin-top: 16px;
+      min-height: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>合言葉を入力</h1>
+    <p>正しい合言葉で移動します</p>
+
+    <input type="password" id="password" placeholder="合言葉を入力" oninput="preview()">
+    <button onclick="checkPassword()">送信</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("password").value.trim();
+      const result = document.getElementById("result");
+
+      // ここを実際のURLに変更
+      const urlForHanataba = "https://ameblo.jp/bump414/entry-12964207575.html";
+      const urlForDaisuki = "https://equal-love.jp/";
+
+      if (input === "hanataba") {
+        result.textContent = "hanatabaで移動します...";
+        result.style.color = "green";
+        window.location.href = urlForHanataba;
+      } else if (input === "love") {
+        result.textContent = "loveで移動します...";
+        result.style.color = "green";
+        window.location.href = urlForDaisuki;
+      } else {
+        result.textContent = "合言葉が違います";
+        result.style.color = "red";
+      }
+    }
+
+    document.getElementById("password").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        checkPassword();
+      }
+    });
+  </script>
+</body>
+</html>
